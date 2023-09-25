@@ -1,13 +1,13 @@
 import { init, plugins } from '@alilc/lowcode-engine';
-import { createFetchHandler } from '@alilc/lowcode-datasource-fetch-handler'
+import { createFetchHandler } from '@alilc/lowcode-datasource-fetch-handler';
 import EditorInitPlugin from './plugins/plugin-editor-init';
 import UndoRedoPlugin from '@alilc/lowcode-plugin-undo-redo';
 import ZhEnPlugin from '@alilc/lowcode-plugin-zh-en';
 import CodeGenPlugin from '@alilc/lowcode-plugin-code-generator';
 import DataSourcePanePlugin from '@alilc/lowcode-plugin-datasource-pane';
 import SchemaPlugin from '@alilc/lowcode-plugin-schema';
-import CodeEditorPlugin from "@alilc/lowcode-plugin-code-editor";
-import ManualPlugin from "@alilc/lowcode-plugin-manual";
+import CodeEditorPlugin from '@alilc/lowcode-plugin-code-editor';
+import ManualPlugin from '@alilc/lowcode-plugin-manual';
 import InjectPlugin from '@alilc/lowcode-plugin-inject';
 import SimulatorResizerPlugin from '@alilc/lowcode-plugin-simulator-select';
 import ComponentPanelPlugin from '@alilc/lowcode-plugin-components-pane';
@@ -18,8 +18,9 @@ import PreviewSamplePlugin from './plugins/plugin-preview-sample';
 import CustomSetterSamplePlugin from './plugins/plugin-custom-setter-sample';
 import SetRefPropPlugin from '@alilc/lowcode-plugin-set-ref-prop';
 import LogoSamplePlugin from './plugins/plugin-logo-sample';
-import { PluginFormily } from '@seada/antd-plugins'
-import 'antd/dist/antd.css'
+import DemoPlugin from './plugins/plugin-demo';
+import { PluginFormily } from '@seada/antd-plugins';
+import 'antd/dist/antd.css';
 import './global.scss';
 
 async function registerPlugins() {
@@ -35,9 +36,10 @@ async function registerPlugins() {
           value: 'https://github.com/alibaba/lowcode-demo/tree/main/demo-antd-pro-with-formily',
         },
         {
-          "key": "formily 物料",
-          "value": "https://github.com/seada-low-code/lowcode-ecology/tree/main/packages/formily-materials"
-        }
+          key: 'formily 物料',
+          value:
+            'https://github.com/seada-low-code/lowcode-ecology/tree/main/packages/formily-materials',
+        },
       ],
     },
   });
@@ -64,7 +66,7 @@ async function registerPlugins() {
 
   await plugins.register(LoadIncrementalAssetsWidgetPlugin);
 
-  await plugins.register(PluginFormily)
+  await plugins.register(PluginFormily);
 
   // 插件参数声明 & 传递，参考：https://lowcode-engine.cn/site/docs/api/plugins#设置插件参数版本示例
   await plugins.register(DataSourcePanePlugin, {
@@ -75,8 +77,8 @@ async function registerPlugins() {
       },
       {
         type: 'jsonp',
-      }
-    ]
+      },
+    ],
   });
 
   await plugins.register(CodeEditorPlugin);
@@ -89,7 +91,9 @@ async function registerPlugins() {
   await plugins.register(PreviewSamplePlugin);
 
   await plugins.register(CustomSetterSamplePlugin);
-};
+
+  await plugins.register(DemoPlugin);
+}
 
 (async function main() {
   await registerPlugins();
@@ -101,7 +105,7 @@ async function registerPlugins() {
     // 默认绑定变量
     supportVariableGlobally: true,
     requestHandlersMap: {
-      fetch: createFetchHandler()
+      fetch: createFetchHandler(),
     },
   });
 })();
